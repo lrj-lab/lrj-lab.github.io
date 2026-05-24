@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRJ Lab · 赛博实验室</title>
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-primary: #f0f0f0;
+            --color-secondary: #888;
+            --color-accent: #666;
+            --color-border: #333;
+            --radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --transition: all 0.2s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        body {
+            background: var(--color-bg);
+            color: var(--color-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+        a:hover {
+            color: #fff;
+            border-bottom-color: var(--color-accent);
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--color-surface);
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:hover {
+            background: var(--color-accent);
+            border-color: var(--color-secondary);
+        }
+        header {
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .nav-links a:hover {
+            opacity: 1;
+        }
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--color-secondary);
+        }
+        .hero-btns {
+            margin-top: 30px;
+        }
+        .hero-btns .btn {
+            margin: 0 8px;
+        }
+        .section-title {
+            text-align: center;
+            margin: 80px 0 50px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .section-title p {
+            color: var(--color-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 35px 30px;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .card p {
+            color: var(--color-secondary);
+            flex-grow: 1;
+        }
+        .card-meta {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border);
+        }
+        footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 60px 0 30px;
+            margin-top: auto;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: var(--color-secondary);
+        }
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-btns .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <a href="/" class="logo">LRJ Lab</a>
+                <ul class="nav-links">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/xiaod/">赛博扫盲·小D</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li><a href="#">实验室</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>LRJ Lab</h1>
+            <p>一个初中生的赛博实验室 · 专注数字素养与 AI 应用</p>
+            <div class="hero-btns">
+                <a href="/xiaod/" class="btn">🤖 体验小D</a>
+                <a href="#" class="btn">📁 项目仓库</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section-title">
+            <h2>正在开发</h2>
+            <p>让科技更有温度 · 从开机教起</p>
+        </section>
+        <div class="features-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3>赛博扫盲·小D</h3>
+                <p>从开机教起，不笑你。一个永远耐心的数字素养 AI 助手。</p>
+                <a href="https://www.coze.cn/task-m/7643249319575109939">✅ 已上线</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎬</div>
+                <h3>550W / MOSS vs 现代AI</h3>
+                <p>高燃短片系列 · 第一回合“人在回路”</p>
+                <div class="card-meta">⏳ 制作中 · 即将发布</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于 LRJ Lab</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">实验室介绍</a></li>
+                        <li><a href="#">开源项目</a></li>
+                        <li><a href="#">数字素养倡议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/lrj-lab">GitHub · lrj-lab</a></li>
+                        <li><a href="https://space.bilibili.com/3546624093587901">Bilibili</a></li>
+                        <li><a href="https://www.coze.cn">Coze</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/lrj-lab">GitHub · lrj-lab</a></li>
+	        <li><a href="https://github.com/Lurenjia-PasserbyA">GitHub · Lurenjia-PasserbyA</a></li>
+                        <li><a href="#">邮箱：3509057421@qq.com</a></li>
+                        <li><a href="#">关于作者</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 LRJ Lab · Lurenjia-PasserbyA</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
